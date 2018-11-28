@@ -10,8 +10,37 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+# Outline
+
+# 0. Load in packages and read in data
+# 1. 
+
+```
+
+
+```{r include = FALSE}
+
+# 0. Load packages and read in data
+
 library(tidyverse)
 library(knitr)
 library(kableExtra)
+
+faculty_salary <- read_csv("Faculty salary data.csv")
+grad_enrollment <- read_csv("Grad enrollment.csv")
+median_salary <- read_csv("Median salary for doctoral recipients.csv")
+phd_field <- read_csv("PhDs by Field.csv")
+
 ```
 
+
+
+#INTRODUCTION
+
+#DATA, DATA ANALYSIS, & STATISTICAL METHODS
+
+#RESULTS & DISCUSSION
+
+#CONCLUSION
+
+#REFERENCES

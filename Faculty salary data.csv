@@ -1,9 +1,4 @@
-"Faculty salary by rank, discipline, experience and sex",,,,,
-"Fox J. and Weisberg, S. (2011) An R Companion to Applied Regression, Second Edition Sage.",,,,,
-"The 2008-09 nine-month academic salary for Assistant Professors, Associate Professors and Professors in a college in the U.S. The data were collected as part of the on-going effort of the college's administration to monitor salary differences between male and female faculty members.",,,,,
-,,,,,
-,,,,,
-Faculty Rank,"Discipline (A = Theoretical, B = Applied)",Years Since PhD,Years Faculty Service,Sex,Salary ($)
+Faculty Rank,Discipline,Years Since PhD,Years Faculty Service,Sex,Salary
 Prof,B,19,18,Male,139750
 Prof,B,20,16,Male,173200
 AsstProf,B,4,3,Male,79750
