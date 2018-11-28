@@ -35,7 +35,7 @@ library(kableExtra)
 faculty_salary <- read_csv("Faculty salary data.csv")
 grad_enrollment <- read_csv("Grad enrollment.csv")
 median_salary <- read_csv("Median salary for doctoral recipients.csv")
-phd_field <- read_csv("PhDs by Field.csv")
+phd_field <- read_csv("PhDs by Field.csv") %>% mutate(Percent = Proportion*100)
 
 ```
 
@@ -68,6 +68,7 @@ phd_field <- read_csv("PhDs by Field.csv")
 ```{r echo = FALSE, message = FALSE, warning= FALSE}
 
 # 2a. 3 side-by-side bar graphs (one for each year), with 1 bar for each subject; 4 side-by-side bar graphs (one for each subject), with 1 bar for each year
+
 
 ```
 

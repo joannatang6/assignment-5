@@ -1,30 +1,190 @@
-﻿,1985,,1990,,1995,,2000,,2005,,2010,,2015,
-Field of study and sex,Number,Proportion,Number,Proportion,Number,Proportion,Number,Proportion,Number,Proportion,Number,Proportion,Number,Proportion
-All fields,"31,295",1.00,"36,064",1.00,"41,576",1.00,"41,296",1.00,"43,319",1.00,"48,015",1.00,"54,999",1.00
-Male,"20,552",0.66,"22,960",0.64,"25,160",0.61,"23,165",0.56,"23,737",0.55,"25,526",0.53,"29,596",0.54
-Female,"10,743",0.34,"13,104",0.36,"16,416",0.40,"18,131",0.44,"19,582",0.45,"22,489",0.47,"25,403",0.46
-Life sciences,"5,822",1.00,"6,655",1.00,"7,956",1.00,"8,611",1.00,"9,296",1.00,"11,314",1.00,"12,519",1.00
-Male,"3,946",0.68,"4,163",0.63,"4,598",0.58,"4,568",0.53,"4,561",0.49,"5,101",0.45,"5,578",0.45
-Female,"1,876",0.32,"2,492",0.37,"3,358",0.42,"4,043",0.47,"4,735",0.51,"6,213",0.55,"6,941",0.55
-Physical sciences and earth sciences,"3,491",1.00,"4,212",1.00,"4,519",1.00,"4,063",1.00,"4,357",1.00,"4,994",1.00,"5,923",1.00
-Male,"2,922",0.84,"3,421",0.81,"3,499",0.77,"3,041",0.75,"3,141",0.72,"3,379",0.68,"3,935",0.66
-Female,569,0.16,791,0.19,"1,020",0.23,"1,022",0.25,"1,216",0.28,"1,615",0.32,"1,988",0.34
-Mathematics and computer sciences,998,1.00,"1,597",1.00,"2,178",1.00,"1,907",1.00,"2,329",1.00,"3,223",1.00,"3,823",1.00
-Male,859,0.86,"1,329",0.83,"1,727",0.79,"1,507",0.79,"1,782",0.77,"2,409",0.75,"2,880",0.75
-Female,139,0.14,268,0.17,451,0.21,400,0.21,547,0.24,814,0.25,943,0.25
-Psychology and social sciences,"6,027",1.00,"6,331",1.00,"6,906",1.00,"7,443",1.00,"7,144",1.00,"7,882",1.00,"9,094",1.00
-Male,"3,517",0.58,"3,378",0.53,"3,380",0.49,"3,370",0.45,"3,159",0.44,"3,358",0.43,"3,762",0.41
-Female,"2,510",0.42,"2,953",0.47,"3,526",0.51,"4,073",0.55,"3,985",0.56,"4,524",0.57,"5,332",0.59
-Engineering,"3,166",1.00,"4,894",1.00,"5,966",1.00,"5,297",1.00,"6,408",1.00,"7,575",1.00,"9,897",1.00
-Male,"2,968",0.94,"4,479",0.92,"5,270",0.88,"4,459",0.84,"5,226",0.82,"5,829",0.77,"7,596",0.77
-Female,198,0.06,415,0.09,696,0.12,838,0.16,"1,182",0.18,"1,746",0.23,"2,301",0.23
-Education,"6,733",1.00,"6,509",1.00,"6,638",1.00,"6,439",1.00,"6,217",1.00,"5,286",1.00,"5,116",1.00
-Male,"3,242",0.48,"2,758",0.42,"2,546",0.38,"2,260",0.35,"2,065",0.33,"1,662",0.31,"1,614",0.32
-Female,"3,491",0.52,"3,751",0.58,"4,092",0.62,"4,179",0.65,"4,152",0.67,"3,624",0.69,"3,502",0.69
-Humanities and arts,"3,406",1.00,"3,854",1.00,"5,034",1.00,"5,458",1.00,"5,181",1.00,"5,015",1.00,"5,599",1.00
-Male,"2,014",0.59,"2,188",0.57,"2,695",0.54,"2,786",0.51,"2,600",0.50,"2,462",0.49,"2,767",0.49
-Female,"1,392",0.41,"1,666",0.43,"2,339",0.47,"2,672",0.49,"2,581",0.50,"2,553",0.51,"2,832",0.51
-Other,"1,652",1.00,"2,012",1.00,"2,379",1.00,"2,078",1.00,"2,387",1.00,"2,726",1.00,"3,028",1.00
-Male,"1,084",0.66,"1,244",0.62,"1,445",0.61,"1,174",0.57,"1,203",0.50,"1,326",0.49,"1,464",0.48
-Female,568,0.34,768,0.38,934,0.39,904,0.44,"1,184",0.50,"1,400",0.51,"1,564",0.52
-,,,,,,,,,,,,,,
+﻿Year,Field,Sex,Number,Proportion
+1985,All fields,Both,"31,295",1.000
+1985,All fields,Male,"20,552",0.657
+1985,All fields,Female,"10,743",0.343
+1985,Life sciences,Both,"5,822",1.000
+1985,Life sciences,Male,"3,946",0.678
+1985,Life sciences,Female,"1,876",0.322
+1985,Physical sciences and earth sciences,Both,"3,491",1.000
+1985,Physical sciences and earth sciences,Male,"2,922",0.837
+1985,Physical sciences and earth sciences,Female,569,0.163
+1985,Mathematics and computer sciences,Both,998,1.000
+1985,Mathematics and computer sciences,Male,859,0.861
+1985,Mathematics and computer sciences,Female,139,0.139
+1985,Psychology and social sciences,Both,"6,027",1.000
+1985,Psychology and social sciences,Male,"3,517",0.584
+1985,Psychology and social sciences,Female,"2,510",0.416
+1985,Engineering,Both,"3,166",1.000
+1985,Engineering,Male,"2,968",0.937
+1985,Engineering,Female,198,0.063
+1985,Education,Both,"6,733",1.000
+1985,Education,Male,"3,242",0.482
+1985,Education,Female,"3,491",0.518
+1985,Humanities and arts,Both,"3,406",1.000
+1985,Humanities and arts,Male,"2,014",0.591
+1985,Humanities and arts,Female,"1,392",0.409
+1985,Other,Both,"1,652",1.000
+1985,Other,Male,"1,084",0.656
+1985,Other,Female,568,0.344
+1990,All fields,Both,"36,064",1.000
+1990,All fields,Male,"22,960",0.637
+1990,All fields,Female,"13,104",0.363
+1990,Life sciences,Both,"6,655",1.000
+1990,Life sciences,Male,"4,163",0.626
+1990,Life sciences,Female,"2,492",0.374
+1990,Physical sciences and earth sciences,Both,"4,212",1.000
+1990,Physical sciences and earth sciences,Male,"3,421",0.812
+1990,Physical sciences and earth sciences,Female,791,0.188
+1990,Mathematics and computer sciences,Both,"1,597",1.000
+1990,Mathematics and computer sciences,Male,"1,329",0.832
+1990,Mathematics and computer sciences,Female,268,0.168
+1990,Psychology and social sciences,Both,"6,331",1.000
+1990,Psychology and social sciences,Male,"3,378",0.534
+1990,Psychology and social sciences,Female,"2,953",0.466
+1990,Engineering,Both,"4,894",1.000
+1990,Engineering,Male,"4,479",0.915
+1990,Engineering,Female,415,0.085
+1990,Education,Both,"6,509",1.000
+1990,Education,Male,"2,758",0.424
+1990,Education,Female,"3,751",0.576
+1990,Humanities and arts,Both,"3,854",1.000
+1990,Humanities and arts,Male,"2,188",0.568
+1990,Humanities and arts,Female,"1,666",0.432
+1990,Other,Both,"2,012",1.000
+1990,Other,Male,"1,244",0.618
+1990,Other,Female,768,0.382
+1995,All fields,Both,"41,576",1.000
+1995,All fields,Male,"25,160",0.605
+1995,All fields,Female,"16,416",0.395
+1995,Life sciences,Both,"7,956",1.000
+1995,Life sciences,Male,"4,598",0.578
+1995,Life sciences,Female,"3,358",0.422
+1995,Physical sciences and earth sciences,Both,"4,519",1.000
+1995,Physical sciences and earth sciences,Male,"3,499",0.774
+1995,Physical sciences and earth sciences,Female,"1,020",0.226
+1995,Mathematics and computer sciences,Both,"2,178",1.000
+1995,Mathematics and computer sciences,Male,"1,727",0.793
+1995,Mathematics and computer sciences,Female,451,0.207
+1995,Psychology and social sciences,Both,"6,906",1.000
+1995,Psychology and social sciences,Male,"3,380",0.489
+1995,Psychology and social sciences,Female,"3,526",0.511
+1995,Engineering,Both,"5,966",1.000
+1995,Engineering,Male,"5,270",0.883
+1995,Engineering,Female,696,0.117
+1995,Education,Both,"6,638",1.000
+1995,Education,Male,"2,546",0.384
+1995,Education,Female,"4,092",0.616
+1995,Humanities and arts,Both,"5,034",1.000
+1995,Humanities and arts,Male,"2,695",0.535
+1995,Humanities and arts,Female,"2,339",0.465
+1995,Other,Both,"2,379",1.000
+1995,Other,Male,"1,445",0.607
+1995,Other,Female,934,0.393
+2000,All fields,Both,"41,296",1.000
+2000,All fields,Male,"23,165",0.561
+2000,All fields,Female,"18,131",0.439
+2000,Life sciences,Both,"8,611",1.000
+2000,Life sciences,Male,"4,568",0.530
+2000,Life sciences,Female,"4,043",0.470
+2000,Physical sciences and earth sciences,Both,"4,063",1.000
+2000,Physical sciences and earth sciences,Male,"3,041",0.748
+2000,Physical sciences and earth sciences,Female,"1,022",0.252
+2000,Mathematics and computer sciences,Both,"1,907",1.000
+2000,Mathematics and computer sciences,Male,"1,507",0.790
+2000,Mathematics and computer sciences,Female,400,0.210
+2000,Psychology and social sciences,Both,"7,443",1.000
+2000,Psychology and social sciences,Male,"3,370",0.453
+2000,Psychology and social sciences,Female,"4,073",0.547
+2000,Engineering,Both,"5,297",1.000
+2000,Engineering,Male,"4,459",0.842
+2000,Engineering,Female,838,0.158
+2000,Education,Both,"6,439",1.000
+2000,Education,Male,"2,260",0.351
+2000,Education,Female,"4,179",0.649
+2000,Humanities and arts,Both,"5,458",1.000
+2000,Humanities and arts,Male,"2,786",0.510
+2000,Humanities and arts,Female,"2,672",0.490
+2000,Other,Both,"2,078",1.000
+2000,Other,Male,"1,174",0.565
+2000,Other,Female,904,0.435
+2005,All fields,Both,"43,319",1.000
+2005,All fields,Male,"23,737",0.548
+2005,All fields,Female,"19,582",0.452
+2005,Life sciences,Both,"9,296",1.000
+2005,Life sciences,Male,"4,561",0.491
+2005,Life sciences,Female,"4,735",0.509
+2005,Physical sciences and earth sciences,Both,"4,357",1.000
+2005,Physical sciences and earth sciences,Male,"3,141",0.721
+2005,Physical sciences and earth sciences,Female,"1,216",0.279
+2005,Mathematics and computer sciences,Both,"2,329",1.000
+2005,Mathematics and computer sciences,Male,"1,782",0.765
+2005,Mathematics and computer sciences,Female,547,0.235
+2005,Psychology and social sciences,Both,"7,144",1.000
+2005,Psychology and social sciences,Male,"3,159",0.442
+2005,Psychology and social sciences,Female,"3,985",0.558
+2005,Engineering,Both,"6,408",1.000
+2005,Engineering,Male,"5,226",0.816
+2005,Engineering,Female,"1,182",0.184
+2005,Education,Both,"6,217",1.000
+2005,Education,Male,"2,065",0.332
+2005,Education,Female,"4,152",0.668
+2005,Humanities and arts,Both,"5,181",1.000
+2005,Humanities and arts,Male,"2,600",0.502
+2005,Humanities and arts,Female,"2,581",0.498
+2005,Other,Both,"2,387",1.000
+2005,Other,Male,"1,203",0.504
+2005,Other,Female,"1,184",0.496
+2010,All fields,Both,"48,015",1.000
+2010,All fields,Male,"25,526",0.532
+2010,All fields,Female,"22,489",0.468
+2010,Life sciences,Both,"11,314",1.000
+2010,Life sciences,Male,"5,101",0.451
+2010,Life sciences,Female,"6,213",0.549
+2010,Physical sciences and earth sciences,Both,"4,994",1.000
+2010,Physical sciences and earth sciences,Male,"3,379",0.677
+2010,Physical sciences and earth sciences,Female,"1,615",0.323
+2010,Mathematics and computer sciences,Both,"3,223",1.000
+2010,Mathematics and computer sciences,Male,"2,409",0.747
+2010,Mathematics and computer sciences,Female,814,0.253
+2010,Psychology and social sciences,Both,"7,882",1.000
+2010,Psychology and social sciences,Male,"3,358",0.426
+2010,Psychology and social sciences,Female,"4,524",0.574
+2010,Engineering,Both,"7,575",1.000
+2010,Engineering,Male,"5,829",0.770
+2010,Engineering,Female,"1,746",0.230
+2010,Education,Both,"5,286",1.000
+2010,Education,Male,"1,662",0.314
+2010,Education,Female,"3,624",0.686
+2010,Humanities and arts,Both,"5,015",1.000
+2010,Humanities and arts,Male,"2,462",0.491
+2010,Humanities and arts,Female,"2,553",0.509
+2010,Other,Both,"2,726",1.000
+2010,Other,Male,"1,326",0.486
+2010,Other,Female,"1,400",0.514
+2015,All fields,Both,"54,999",1.000
+2015,All fields,Male,"29,596",0.538
+2015,All fields,Female,"25,403",0.462
+2015,Life sciences,Both,"12,519",1.000
+2015,Life sciences,Male,"5,578",0.446
+2015,Life sciences,Female,"6,941",0.554
+2015,Physical sciences and earth sciences,Both,"5,923",1.000
+2015,Physical sciences and earth sciences,Male,"3,935",0.664
+2015,Physical sciences and earth sciences,Female,"1,988",0.336
+2015,Mathematics and computer sciences,Both,"3,823",1.000
+2015,Mathematics and computer sciences,Male,"2,880",0.753
+2015,Mathematics and computer sciences,Female,943,0.247
+2015,Psychology and social sciences,Both,"9,094",1.000
+2015,Psychology and social sciences,Male,"3,762",0.414
+2015,Psychology and social sciences,Female,"5,332",0.586
+2015,Engineering,Both,"9,897",1.000
+2015,Engineering,Male,"7,596",0.768
+2015,Engineering,Female,"2,301",0.232
+2015,Education,Both,"5,116",1.000
+2015,Education,Male,"1,614",0.315
+2015,Education,Female,"3,502",0.685
+2015,Humanities and arts,Both,"5,599",1.000
+2015,Humanities and arts,Male,"2,767",0.494
+2015,Humanities and arts,Female,"2,832",0.506
+2015,Other,Both,"3,028",1.000
+2015,Other,Male,"1,464",0.483
+2015,Other,Female,"1,564",0.517
