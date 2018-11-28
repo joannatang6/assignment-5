@@ -17,8 +17,8 @@ knitr::opts_chunk$set(echo = TRUE)
 # 1b. 12 pairwise t-tests for 1967 Total Males vs 2015 Total Males, 1967 Total Females vs 2015 Total Females, 1967 Total Males vs 1967 Total Femals, 2015 Total Males vs 2015 Total Females...
 # 2a. 3 side-by-side bar graphs (one for each year), with 1 bar for each subject; 4 side-by-side bar graphs (one for each subject), with 1 bar for each year
 # 2b. ANOVA
-# 3a. Boxplot for male vs female postdoc positions; boxplot for male vs female non-postdoc positions
-# 3b. Pairwise t-test for each boxplot
+# 3a. Bar graph for male vs female postdoc positions, male vs female non-postdoc positions
+# 3b. Pairwise t-tests
 # 4. Multivariable LM
 
 ```
@@ -29,12 +29,18 @@ knitr::opts_chunk$set(echo = TRUE)
 # 0. Load packages and read in data
 
 library(tidyverse)
+library(vcdExtra)
 library(knitr)
 library(kableExtra)
+library(RColorBrewer)
+library(car)
+library(effsize)
+library(kableExtra)
+library(formattable)
 
 faculty_salary <- read_csv("Faculty salary data.csv")
-grad_enrollment <- read_csv("Grad enrollment.csv")
-median_salary <- read_csv("Median salary for doctoral recipients.csv")
+grad_enrollment <- read_csv("Grad enrollment.csv") %>% rename("Males" = "Total Males") %>% rename("Females" = "Total Females") %>% rename("Full_time_males" = "Full-time-males") %>% rename("Full_time_females" = "Full-time-females") %>% rename("Part_time_males" = "Part-time-males") %>% rename("Part_time_females" = "Part-time-females") %>% rename("Private_total" = "Private-total")
+median_salary <- read_csv("Median salary for doctoral recipients.csv") %>% rename("Total_male" = "Total employment male") %>% rename("Total_female" = "Total employment femal") %>% rename("Postdoc_male" = "Postdoc male") %>% rename("Postdoc_female" = "Postdoc female")
 phd_field <- read_csv("PhDs by Field.csv") %>% mutate(Percent = Proportion*100)
 
 ```
@@ -53,6 +59,25 @@ phd_field <- read_csv("PhDs by Field.csv") %>% mutate(Percent = Proportion*100)
 
 # 1a. Line graph with 6 lines: Total Males, Total Females, Full-time-males, Full-time-females, Part-time-males, Part-time-females, Public, Private-total
 
+grad_enrollment_total <- ggplot(grad_enrollment, aes(x = Year)) +
+  geom_line(aes(y = Males), color = "red") +
+  geom_line(aes(y = Females), color = "blue")
+grad_enrollment_total
+
+grad_enrollment_full <- ggplot(grad_enrollment, aes(x = Year)) +
+  geom_line(aes(y = Full_time_males), color = "red") +
+  geom_line(aes(y = Full_time_females), color = "blue")
+grad_enrollment_full
+
+grad_enrollment_part <- ggplot(grad_enrollment, aes(x = Year)) +
+  geom_line(aes(y = Part_time_males), color = "red") +
+  geom_line(aes(y = Part_time_females), color = "blue")
+grad_enrollment_part
+
+grad_enrollment_public_private <- ggplot(grad_enrollment, aes(x = Year)) +
+  geom_line(aes(y = Public), color = "cyan") +
+  geom_line(aes(y = Private_total), color = "magenta")
+grad_enrollment_public_private
 
 ```
 
@@ -60,6 +85,21 @@ phd_field <- read_csv("PhDs by Field.csv") %>% mutate(Percent = Proportion*100)
 
 # 1b. 12 pairwise t-tests for 1967 Total Males vs 2015 Total Males, 1967 Total Females vs 2015 Total Females, 1967 Total Males vs 1967 Total Femals, 2015 Total Males vs 2015 Total Females...
 
+grad_enrollment_total_ttest <- t.test(grad_enrollment$Males,grad_enrollment$Females)
+
+grad_enrollment_total_ttest
+
+grad_enrollment_full_ttest <- t.test(grad_enrollment$Full_time_males, grad_enrollment$Full_time_females)
+
+grad_enrollment_full_ttest
+
+grad_enrollment_part_ttest <- t.test(grad_enrollment$Part_time_males, grad_enrollment$Part_time_females)
+
+grad_enrollment_part_ttest
+
+grad_enrollment_public_private_ttest <- t.test(grad_enrollment$Public, grad_enrollment$Private_total)
+
+grad_enrollment_public_private_ttest
 
 ```
 
@@ -69,11 +109,38 @@ phd_field <- read_csv("PhDs by Field.csv") %>% mutate(Percent = Proportion*100)
 
 # 2a. 3 side-by-side bar graphs (one for each year), with 1 bar for each subject; 4 side-by-side bar graphs (one for each subject), with 1 bar for each year
 
+female_phd <- phd_field %>% 
+  filter(Sex == "Female",
+         Field == "Physical sciences and earth sciences" |
+         Field == "Engineering" |
+         Field == "Education" |
+         Field == "Humanities and arts",
+         Year == "1985" |
+         Year == "2000" |
+         Year == "2015")
+
+female_phd_year_graph <- ggplot(female_phd, aes(x = Year)) +
+  geom_col(aes(y = Number, fill = Field), position = "dodge")
+  
+female_phd_year_graph
+
+female_phd_field_graph <- ggplot(female_phd, aes(x = Field,)) +
+  geom_col(aes(y = Number, fill = as.factor(Year)), position = "dodge")
+
+female_phd_field_graph
 
 ```
 
 ```{r include = FALSE}
 # ANOVA
+
+female_phd_aov <- aov(Number ~ Field, data = female_phd)
+
+female_phd_aov
+
+female_phd_ph <- TukeyHSD(female_phd_aov)
+
+female_phd_ph
 
 
 ```
@@ -82,14 +149,30 @@ phd_field <- read_csv("PhDs by Field.csv") %>% mutate(Percent = Proportion*100)
 
 ```{r echo = FALSE, message = FALSE, warning= FALSE}
 
-# 3a. Boxplot for male vs female postdoc positions; boxplot for male vs female non-postdoc positions
+# 3a. Bar graph for male vs female postdoc positions, male vs female non-postdoc positions
 
+starting_salary <- median_salary %>% 
+  summarize(
+    median_female = median(Total_female),
+    median_male = median(Total_male),
+    se_female = se(Total_female),
+    se_male = se(Total_male)
+  )
+
+starting_salary_postdoc <- median_salary %>% 
+  summarize(
+    median_postdoc_female = median(Postdoc_female),
+    median_postdoc_male = median(Postdoc_male),
+  )
+
+starting_salary
+starting_salary_postdoc
 
 ```
 
 ```{r include = FALSE}
 
-# 3b. Pairwise t-test for each boxplot
+# 3b. Pairwise t-test for each boxplot (Mann-Whitney U)
 
 ```
 
