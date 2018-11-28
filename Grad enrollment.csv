@@ -1,6 +1,4 @@
-﻿Year,Total,Full- time,Part- time,Total Males,Total Females,Males,,Females,,Public,Private,,
-,,,,,,Full-time,Part-time,Full-time,Part-time,,Total,Nonprofit,For-profit
-1,2,3,4,5,6,7,8,9,10,11,12,13,14
+﻿Year,Total,Full- time,Part- time,Total Males,Total Females,Full-time-males,Part-time-males,Full-time-females,Part-time-females,Public,Private-total,Private-nonprofit,Private-forprofit
 1967,896065,448238,447827,630701,265364,354628,276073,93610,171754,522623,373442,373336,106
 1968,1037377,469747,567630,696649,340728,358686,337963,111061,229667,648657,388720,388681,39
 1969,1120175,506833,613342,738673,381502,383630,355043,123203,258299,738551,381624,381558,66

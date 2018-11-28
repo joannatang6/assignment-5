@@ -1,24 +1,16 @@
-﻿"Table 48. Median basic annual salary for doctorate recipients with definite postgraduation plans in the United States, by field of study, type of postgraduation plans, and sex: 2015",,,,,,,,,
-(Dollars),,,,,,,,,
-,,,,,,,,,
-Field of study,Employment,,Postdoctoral study,,,,,,
-,Male,Female,Male,Female,,,,,
-Agricultural sciences and natural resources,"78,000","66,000","42,750","44,000",,,,,
-Biological and biomedical sciences,"75,000","66,000","42,000","42,000",,,,,
-Health sciences,"75,000","75,000","43,000","43,250",,,,,
-Chemistry,"80,000","75,000","42,000","42,000",,,,,
-"Geosciences, atmospheric, and ocean sciences","75,167","71,750","50,000","50,000",,,,,
-Physics and astronomy,"95,000","97,650","50,000","53,000",,,,,
-Mathematics and computer sciences,"105,000","90,000","58,000","55,000",,,,,
-Psychology,"63,000","60,000","42,000","42,000",,,,,
-Economics,"105,000","95,750","65,000","65,000",,,,,
-Social sciences,"64,000","62,000","48,000","49,250",,,,,
-Engineering,"95,000","90,000","45,000","45,000",,,,,
-Education,"71,000","63,000","50,000","45,000",,,,,
-Humanities and arts,"52,000","50,000","45,000","45,000",,,,,
-Business management and administration,"123,500","120,000","60,000","63,500",,,,,
-Other non-S&E fields,"62,800","61,000","50,000","44,000",,,,,
-,,,,,,,,,
-S&E = science and engineering.,,,,,,,,,
-NOTES: Median salaries in this table are the exact salary values of respondents at the 50th percentile of their frequency distribution; salary values have not been rounded. See table A-6 in the technical notes for a listing of major fields and their constituent subfields.,,,,,,,,,
-"SOURCE: National Science Foundation, National Center for Science and Engineering Statistics, Survey of Earned Doctorates, 2015.",,,,,,,,,
+﻿Field of study,Total employment male,Total employment femal,Postdoc male,Postdoc female
+Agricultural sciences and natural resources,"78,000","66,000","42,750","44,000"
+Biological and biomedical sciences,"75,000","66,000","42,000","42,000"
+Health sciences,"75,000","75,000","43,000","43,250"
+Chemistry,"80,000","75,000","42,000","42,000"
+"Geosciences, atmospheric, and ocean sciences","75,167","71,750","50,000","50,000"
+Physics and astronomy,"95,000","97,650","50,000","53,000"
+Mathematics and computer sciences,"105,000","90,000","58,000","55,000"
+Psychology,"63,000","60,000","42,000","42,000"
+Economics,"105,000","95,750","65,000","65,000"
+Social sciences,"64,000","62,000","48,000","49,250"
+Engineering,"95,000","90,000","45,000","45,000"
+Education,"71,000","63,000","50,000","45,000"
+Humanities and arts,"52,000","50,000","45,000","45,000"
+Business management and administration,"123,500","120,000","60,000","63,500"
+Other non-S&E fields,"62,800","61,000","50,000","44,000"

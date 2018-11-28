@@ -1,6 +1,6 @@
 ---
-title: "Assignment 5"
-author: "Joanna Tang"
+title: "Male and femal academic trajectories"
+author: "Joanna Tang, Sandro Lallas, Rachem Behm"
 date: "11/27/2018"
 output: html_document
 ---
@@ -9,11 +9,17 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r include = FALSE}
 # Outline
 
 # 0. Load in packages and read in data
-# 1. 
+# 1a. Line graph with 6 lines: Total Males, Total Females, Full-time-males, Full-time-females, Part-time-males, Part-time-females, Public, Private-total
+# 1b. 12 pairwise t-tests for 1967 Total Males vs 2015 Total Males, 1967 Total Females vs 2015 Total Females, 1967 Total Males vs 1967 Total Femals, 2015 Total Males vs 2015 Total Females...
+# 2a. 3 side-by-side bar graphs (one for each year), with 1 bar for each subject; 4 side-by-side bar graphs (one for each subject), with 1 bar for each year
+# 2b. ANOVA
+# 3a. Boxplot for male vs female postdoc positions; boxplot for male vs female non-postdoc positions
+# 3b. Pairwise t-test for each boxplot
+# 4. Multivariable LM
 
 ```
 
@@ -40,6 +46,62 @@ phd_field <- read_csv("PhDs by Field.csv")
 #DATA, DATA ANALYSIS, & STATISTICAL METHODS
 
 #RESULTS & DISCUSSION
+
+##Male and female graduate enrollment (1967-2015)
+
+```{r echo = FALSE, message = FALSE, warning= FALSE}
+
+# 1a. Line graph with 6 lines: Total Males, Total Females, Full-time-males, Full-time-females, Part-time-males, Part-time-females, Public, Private-total
+
+
+```
+
+```{r include = FALSE}
+
+# 1b. 12 pairwise t-tests for 1967 Total Males vs 2015 Total Males, 1967 Total Females vs 2015 Total Females, 1967 Total Males vs 1967 Total Femals, 2015 Total Males vs 2015 Total Females...
+
+
+```
+
+##Shifts in female PhD recipients
+
+```{r echo = FALSE, message = FALSE, warning= FALSE}
+
+# 2a. 3 side-by-side bar graphs (one for each year), with 1 bar for each subject; 4 side-by-side bar graphs (one for each subject), with 1 bar for each year
+
+```
+
+```{r include = FALSE}
+# ANOVA
+
+
+```
+
+##Male and female salaries for starting postdoctoral and other employment positions (2015)
+
+```{r echo = FALSE, message = FALSE, warning= FALSE}
+
+# 3a. Boxplot for male vs female postdoc positions; boxplot for male vs female non-postdoc positions
+
+
+```
+
+```{r include = FALSE}
+
+# 3b. Pairwise t-test for each boxplot
+
+```
+
+
+##Academic salaries for professors in U.S. colleges
+
+```{r echo = FALSE, message = FALSE, warning= FALSE}
+
+# 4. Multivariable LM
+
+
+```
+
 
 #CONCLUSION
 
