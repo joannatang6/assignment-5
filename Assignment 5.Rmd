@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # 2a. Bar graph, with 1 bar for each subject
 # 2b. Pairwise Chi-squared tests
 # 3a. Table for male vs female postdoc positions, male vs female non-postdoc positions
-# 3b. Pairwise Chi-squared tests
+# 3b. Pairwise Mann-Whitney U + Cliff's Delta (effect size)
 # 4. Multivariable LM
 
 ```
