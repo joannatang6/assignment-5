@@ -244,10 +244,19 @@ faculty_salary_lm_sat <- lm(Salary ~ Sex + Rank + Years + Discipline + Years_sin
 
 summary(faculty_salary_lm_sat)
 
+pairs_df <- select(faculty_salary, Years_since, Years, Salary)
+pairs(pairs_df)
+
 plot(faculty_salary_lm_sat)
 
 sat_aic <- AIC(faculty_salary_lm_sat)
-sat_aic
+sat_aic #9095
+
+faculty_salary_lm <- lm(Salary ~ Sex + Rank + Discipline + Years_since, data = faculty_salary)
+summary(faculty_salary_lm)
+
+aic <- AIC(faculty_salary_lm)
+aic #9097
 
 ```
 
