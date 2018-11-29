@@ -242,21 +242,38 @@ faculty_salary$Rank <- fct_relevel(faculty_salary$Rank, "AsstProf")
 
 faculty_salary_lm_sat <- lm(Salary ~ Sex + Rank + Years + Discipline + Years_since, data = faculty_salary)
 
-summary(faculty_salary_lm_sat)
+summary(faculty_salary_lm_sat) #negative coefficient doesn't make sense
 
 pairs_df <- select(faculty_salary, Years_since, Years, Salary)
 pairs(pairs_df)
 
 plot(faculty_salary_lm_sat)
 
-sat_aic <- AIC(faculty_salary_lm_sat)
-sat_aic #9095
+faculty_salary_lm1 <- lm(Salary ~ Sex + Rank + Discipline + Years, data = faculty_salary)
+summary(faculty_salary_lm1) #coefficient still negative
 
-faculty_salary_lm <- lm(Salary ~ Sex + Rank + Discipline + Years_since, data = faculty_salary)
-summary(faculty_salary_lm)
+faculty_salary_lm2 <- lm(Salary ~ Sex + Rank + Discipline + Years_since, data = faculty_salary)
+summary(faculty_salary_lm2)
 
-aic <- AIC(faculty_salary_lm)
-aic #9097
+aic_lm2 <- AIC(faculty_salary_lm2)
+aic_lm2 #9097
+
+faculty_salary_lm3 <- lm(Salary ~ Sex + Rank + Discipline, data = faculty_salary)
+summary(faculty_salary_lm3)
+
+aic_lm3 <- AIC(faculty_salary_lm3)
+aic_lm3 #9095
+
+
+
+```
+
+
+```{r stargazer, echo = FALSE, results = 'asis'}
+
+#Regression table of LMs
+
+stargazer(faculty_salary_lm_sat, faculty_salary_lm2, faculty_salary_lm3, type = "html")
 
 ```
 
