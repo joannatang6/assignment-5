@@ -1,5 +1,5 @@
 ---
-title: "Male and femal academic trajectories"
+title: "Female academic trajectories (1967-2015)"
 author: "Joanna Tang, Sandro Lallas, Rachem Behm"
 date: "11/27/2018"
 output: html_document
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # 1b. Pairwise Chi-squared tests
 # 2a. Bar graph, with 1 bar for each subject
 # 2b. Pairwise Chi-squared tests
-# 3a. Bar graph for male vs female postdoc positions, male vs female non-postdoc positions
+# 3a. Table for male vs female postdoc positions, male vs female non-postdoc positions
 # 3b. Pairwise Chi-squared tests
 # 4. Multivariable LM
 
@@ -37,8 +37,9 @@ library(car)
 library(effsize)
 library(kableExtra)
 library(formattable)
+library(stargazer)
 
-faculty_salary <- read_csv("Faculty salary data.csv")
+faculty_salary <- read_csv("Faculty salary data.csv") %>% rename("Years_since" = "Years Since PhD") %>% rename("Years" = "Years Faculty Service") %>% rename("Rank" = "Faculty Rank")
 grad_enrollment <- read_csv("Grad enrollment.csv") %>% rename("Males" = "Total Males") %>% rename("Females" = "Total Females") %>% rename("Full_time_males" = "Full-time-males") %>% rename("Full_time_females" = "Full-time-females") %>% rename("Part_time_males" = "Part-time-males") %>% rename("Part_time_females" = "Part-time-females") %>% rename("Private_total" = "Private-total")
 median_salary <- read_csv("Median salary for doctoral recipients.csv") %>% rename("Total_male" = "Total employment male") %>% rename("Total_female" = "Total employment femal") %>% rename("Postdoc_male" = "Postdoc male") %>% rename("Postdoc_female" = "Postdoc female")
 phd_field <- read_csv("PhDs by Field.csv") %>% mutate(Percent = Proportion*100)
@@ -131,15 +132,28 @@ female_phd_graph
 ```
 
 ```{r include = FALSE}
-# 2b. ANOVA
+# 2b. Pairwise Chi-squared tests
 
-female_phd_aov <- aov(Number ~ Field, data = female_phd)
+# Converting female_phd into contingency table
 
-summary(female_phd_aov)
+female_phd_contingency <- select(female_phd, "Field", "Number", "Year") %>%
+  spread(Field, Number) %>% 
+  select(-Year)
 
-female_phd_ph <- TukeyHSD(female_phd_aov)
+rownames(female_phd_contingency) <- c("1985", "2000", "2015")
 
-female_phd_ph
+
+female_phd_ed_chi <- chisq.test(select(female_phd_contingency, "Education"))
+female_phd_ed_chi #p < .001, year affects proportion
+
+female_phd_eng_chi <- chisq.test(select(female_phd_contingency, "Engineering"))
+female_phd_eng_chi #p < .001, year affects proportion
+
+female_phd_ha_chi <- chisq.test(select(female_phd_contingency, "Humanities and arts"))
+female_phd_ha_chi #p < .001, year affects proportion
+
+female_phd_pe_chi <- chisq.test(select(female_phd_contingency, "Physical sciences and earth sciences"))
+female_phd_pe_chi #p < .001, year affects proportion
 
 
 ```
@@ -148,7 +162,7 @@ female_phd_ph
 
 ```{r echo = FALSE, message = FALSE, warning= FALSE}
 
-# 3a. Bar graph for male vs female postdoc positions, male vs female non-postdoc positions
+# 3a. Table for male vs female postdoc positions, male vs female non-postdoc positions
 
 
 #Simplifying 
@@ -174,15 +188,20 @@ starting_salary_postdoc
 
 ```{r include = FALSE}
 
-# 3b. Pairwise Mann-Whitney U
+# 3b. Pairwise Mann-Whitney U + Cliff's Delta (effect size)
 
 starting_salary_mwu <- wilcox.test(median_salary$Total_male, median_salary$Total_female)
-
 starting_salary_mwu #p = .3289, medians the same
 
-starting_salary_postdoc_mwu <- wilcox.test(median_salary$Postdoc_male, median_salary$Postdoc_female)
+starting_salary_cliff <- cliff.delta(median_salary$Total_male, median_salary$Total_female)
+starting_salary_cliff #delta = .213 (small)
 
+
+starting_salary_postdoc_mwu <- wilcox.test(median_salary$Postdoc_male, median_salary$Postdoc_female)
 starting_salary_postdoc_mwu #p = .8671, medians the same
+
+starting_salary_postdoc_cliff <- cliff.delta(median_salary$Postdoc_male, median_salary$Postdoc_female)
+starting_salary_postdoc_cliff #delta = .04 (small)
 
 ```
 
@@ -193,10 +212,28 @@ starting_salary_postdoc_mwu #p = .8671, medians the same
 
 # 4. Multivariable LM
 
+faculty_salary$Rank <- fct_relevel(faculty_salary$Rank, "AsstProf")
+
+faculty_salary_lm_sat <- lm(Salary ~ Sex + Rank + Years + Discipline + Years_since, data = faculty_salary)
+
+summary(faculty_salary_lm_sat)
+
+plot(faculty_salary_lm_sat)
+
+sat_aic <- AIC(faculty_salary_lm_sat)
+sat_aic
 
 ```
 
 #DISCUSSION
+
+##Female graduate enrollment is increasing over time
+
+##Shifts in female PhD recipients over time
+
+##Starting salaries for female PhD recipients in 2015
+
+##Academic salaries for US professors (2008-2009)
 
 #CONCLUSION
 
