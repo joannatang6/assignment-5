@@ -68,8 +68,17 @@ All statistical analyses and figures were created in R (version 3.4.2).  Chi-squ
 # 1a. 4 line graphs with 2 lines each: Total Males, Total Females, Full-time-males, Full-time-females, Part-time-males, Part-time-females, Public, Private-total
 
 grad_enrollment_total <- ggplot(grad_enrollment, aes(x = Year)) +
-  geom_line(aes(y = Males), color = "red") +
-  geom_line(aes(y = Females), color = "blue")
+  geom_point(aes(y = Males), color = "red") +
+    geom_smooth(method = lm, se = TRUE, color = "gray20", aes(y = Males)) +
+  geom_point(aes(y = Females), color = "blue") +
+    geom_smooth(method = lm, se = TRUE, color = "gray20", aes(y = Females)) +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  scale_y_continuous(breaks = seq(200000, 1800000, by = 400000), lim = c(200000, 1800000), expand = c(0,0)) +
+  xlab("Year") +
+  ylab("Number of Students") +
+  ggtitle("Graduate School Enrollment by Gender (1967-2015)") +
+  theme_classic()
+
 grad_enrollment_total
 
 grad_enrollment_public_private <- ggplot(grad_enrollment, aes(x = Year)) +
@@ -141,7 +150,14 @@ female_phd <- phd_field %>%
          Year == "2015")
 
 female_phd_graph <- ggplot(female_phd, aes(x = Year)) +
-  geom_col(aes(y = Number, fill = Field), position = "dodge")
+  geom_col(aes(y = Number, fill = Field), position = "dodge") +
+  scale_x_continuous(breaks = seq(1985, 2015, by = 15), expand = c(0, 0)) +
+  scale_y_continuous(lim = c(0, 5000), expand = c(0,0)) +
+  xlab("Year") +
+  ylab("Number of Students") +
+  ggtitle("Female PhD Recipients by Field") +
+  theme_classic()
+
   
 female_phd_graph
 
