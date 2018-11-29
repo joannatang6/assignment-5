@@ -98,11 +98,15 @@ summary(grad_enrollment_males_lm)
 grad_enrollment_females_lm <-lm(Females ~ Year, data = grad_enrollment)
 summary(grad_enrollment_females_lm)
 
+grad_enrollment_males_pearsons <- cor.test(grad_enrollment$Year, grad_enrollment$Males)
+grad_enrollment_males_pearsons
 
+grad_enrollment_females_pearsons <- cor.test(grad_enrollment$Year, grad_enrollment$Females)
+grad_enrollment_females_pearsons
 
 ```
 
-Total graduate enrollment of both males and females increased from 1967 to 2015 (Fig. 1).  Male enrollment increased from xx in 1967 to xx in 2015.  Female enrollment increased from xx in 1967 to xx in 2015.  Most notably, up until 1988, total male enrollment exceeded total female enrollment; since 1988, total female enrollment has exceeded total male enrollment.  Thus, there is a significant effect of year on the proportion of male and female graduate students (chi-squared (48) = 2176500, p < 0.001).
+Total graduate enrollment of both males and females increased from 1967 to 2015 (Fig. 1).  Male enrollment increased from 630,701 in 1967 to 1,221,566 in 2015.  Female enrollment increased from 265,364 in 1967 to 1,718,926 in 2015.  Most notably, up until 1988, total male enrollment exceeded total female enrollment; since 1988, total female enrollment has exceeded total male enrollment. The year significantly predicts male graduate enrollment (Pearsons R = .92). The overall model (Enrollment = 9,069 * Year - 17,112,153) explains a significant amount of variance in male graduate enrollment. F(1, 47) = 276, *p* < 0.001, R^2^ = 0.85. The year significantly predicts female graduate enrollment (Pearsons R = .99). The overall model (Enrollment = 30,126 * Year - 58,955,502) explains a significant amount of variance in female graduate enrollment. F(1, 47) = 2,669, *p* < 0.001, R^2^ = 0.98.
 
 
 
@@ -166,17 +170,15 @@ female_phd_pe_chi #chi2 (2) = 880.67, p < .001, year affects proportion
 
 ```
 
-The number of female PhD recipients in Education increased from xx in 1985 to xx in 2000, but then decreased to xx in 2015 (Fig. 5).  This is the only field for which the number of recipients declined from 2000 to 2015.  Thus, there is a significant effect of year on the proportion of PhD recipients in Education (chi-squared (2) = 83.404, p < 0.001).
+The number of female PhD recipients in Education increased from 3,491 in 1985 to 4,179 in 2000, but then decreased to 3,502 in 2015 (Fig. 5).  This is the only field for which the number of recipients declined from 2000 to 2015.  Thus, there is a significant effect of year on the proportion of PhD recipients in Education (chi-squared (2) = 83.404, p < 0.001).
 
-The number of female PhD recipients in Engineering increased from xx in 1985, to xx in 2000, to xx in 2015 (Fig. 5).  Thus, there is a significant effect of year on the proportion of PhD recipients in Engineering (chi-squared (2) = 2989.5, p < 0.001).
-
-
-The number of female PhD recipients in Humanities & Arts increased from xx in 1985, to xx in 2000, to xx in 2015 (Fig. 5).  Thus, there is a significant effect of year on the proportion of PhD recipients in Humanities & Arts (chi-squared (2) = 542, p < 0.001).
+The number of female PhD recipients in Engineering increased from 198 in 1985, to 838 in 2000, to 2,301 in 2015 (Fig. 5).  Thus, there is a significant effect of year on the proportion of PhD recipients in Engineering (chi-squared (2) = 2989.5, p < 0.001).
 
 
-The number of female PhD recipients in Physical & Earth Sciences increased from xx in 1985, to xx in 2000, to xx in 2015 (Fig. 5).  Thus, there is a significant effect of year on the proportion of PhD recipients in Physical & Earth Sciences (chi-squared (2) = 880.67, p < 0.001).
+The number of female PhD recipients in Humanities & Arts increased from 1,392 in 1985, to 2,672 in 2000, to 2,832 in 2015 (Fig. 5).  Thus, there is a significant effect of year on the proportion of PhD recipients in Humanities & Arts (chi-squared (2) = 542, p < 0.001).
 
 
+The number of female PhD recipients in Physical & Earth Sciences increased from 569 in 1985, to 1,022 in 2000, to 1,988 in 2015 (Fig. 5).  Thus, there is a significant effect of year on the proportion of PhD recipients in Physical & Earth Sciences (chi-squared (2) = 880.67, p < 0.001).
 
 ##Male and female salaries for starting postdoctoral and other employment positions (2015)
 
