@@ -200,19 +200,19 @@ starting_salary <- median_salary %>%
   summarize(
     median_female = median(Total_female),
     median_male = median(Total_male),
-    se_female = se(Total_female),
-    se_male = se(Total_male)
+    se_female = sd(Total_female)/sqrt(length(Total_female)),
+    se_male = sd(Total_male)/sqrt(length(Total_male))
   )
-starting_salary
+kable(starting_salary)
 
 starting_salary_postdoc <- median_salary %>% 
   summarize(
     median_postdoc_female = median(Postdoc_female),
     median_postdoc_male = median(Postdoc_male),
-    se_female = se(Postdoc_female),
-    se_male = se(Postdoc_male)
+    se_female = sd(Postdoc_female)/sqrt(length(Postdoc_female)),
+    se_male = sd(Postdoc_male)/sqrt(length(Postdoc_male))
   )
-starting_salary_postdoc
+kable(starting_salary_postdoc)
 
 ```
 
