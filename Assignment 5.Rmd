@@ -50,7 +50,14 @@ phd_field <- read_csv("PhDs by Field.csv") %>% mutate(Percent = Proportion*100)
 
 #INTRODUCTION
 
-#DATA, DATA ANALYSIS, & STATISTICAL METHODS
+#METHODS
+
+##Data Collection
+
+##Statistical Analyses
+
+All statistical analyses and figures were created in R (version 3.4.2).  Chi-squared tests were performed to analyze shifts in male and female graduate enrollment (1967-2015).  Chi-squared tests were performed to analyze shifts in female PhD recipients by field (1985, 2000, and 2015). Since our data for post-graduate starting salaries were not normally distributed, we used rank-based Mann-Whitney U tests to analyze significant differences between male and female salaries for starting postdoctoral and other employment positions (2015).
+
 
 #RESULTS
 
@@ -65,6 +72,11 @@ grad_enrollment_total <- ggplot(grad_enrollment, aes(x = Year)) +
   geom_line(aes(y = Females), color = "blue")
 grad_enrollment_total
 
+grad_enrollment_public_private <- ggplot(grad_enrollment, aes(x = Year)) +
+  geom_line(aes(y = Public), color = "orange") +
+  geom_line(aes(y = Private_total), color = "green")
+grad_enrollment_public_private
+
 grad_enrollment_full <- ggplot(grad_enrollment, aes(x = Year)) +
   geom_line(aes(y = Full_time_males), color = "red") +
   geom_line(aes(y = Full_time_females), color = "blue")
@@ -75,10 +87,6 @@ grad_enrollment_part <- ggplot(grad_enrollment, aes(x = Year)) +
   geom_line(aes(y = Part_time_females), color = "blue")
 grad_enrollment_part
 
-grad_enrollment_public_private <- ggplot(grad_enrollment, aes(x = Year)) +
-  geom_line(aes(y = Public), color = "orange") +
-  geom_line(aes(y = Private_total), color = "green")
-grad_enrollment_public_private
 
 ```
 
@@ -91,20 +99,30 @@ grad_enrollment_contingency <- select(grad_enrollment, "Males", "Females", "Full
 
 rownames(grad_enrollment_contingency) <- seq(1967,2015)
 
+
 chi_total <- chisq.test(select(grad_enrollment_contingency, "Males", "Females"))
-chi_total #p < .001, year affects proportion of males vs females
+chi_total #chi2 (48) = 2176400, p < .001, year affects proportion of males vs females
 
 chi_full <- chisq.test(select(grad_enrollment_contingency, "Full_time_males", "Full_time_females"))
-chi_full #p < .001, year affects proportion of full-time males vs females
+chi_full #chi2 (48) = 1904900, p < .001, year affects proportion of full-time males vs females
 
 chi_part <- chisq.test(select(grad_enrollment_contingency, "Part_time_males", "Part_time_females"))
-chi_part #p < .001, year affects proportion of part-time males vs females
+chi_part #chi2 (48) = 692160, p < .001, year affects proportion of part-time males vs females
 
 chi_public_private <- chisq.test(select(grad_enrollment_contingency, "Public", "Private_total"))
-chi_public_private #p < .001, year affects proportion of public vs private
+chi_public_private #chi2 (48) = 1384600, p < .001, year affects proportion of public vs private
 
 
 ```
+
+Total graduate enrollment of both males and females increased from 1967 to 2015 (Fig. 1).  Male enrollment increased from xx in 1967 to xx in 2015.  Female enrollment increased from xx in 1967 to xx in 2015.  Most notably, up until 1988, total male enrollment exceeded total female enrollment; since 1988, total female enrollment has exceeded total male enrollment.  Thus, there is a significant effect of year on the proportion of male and female graduate students (chi-squared (48) = 2176500, p < 0.001).
+
+Graduate enrollment in both public and private schools increased from 1967 to 2015 (Fig. 2).  Public school enrollment increased form xx in 1967 to xx in 2015.  Private school enrollment increased from xx in 1967 to xx in 2015.  Most notably, up until 2009, total male enrollment exceeded total female enrollment; since 2009, total female enrollment has exceeded total male enrollment.  Thus, there is a significant effect of year on the proportion of graduate students enrolled in public and private schools (chi-squared (48) = 1384600, p < 0.001).
+
+Full-time graduate enrollment of both males and females increased from 1967 to 2015 (Fig. 3).  Full-time male enrollment increased form xx in 1967 to xx in 2015.  Full-time female enrollment increased from xx in 1967 to xx in 2015.  Most notably, up until 1997, total male enrollment exceeded total female enrollment; since 1997, total female enrollment has exceeded total male enrollment.  Thus, there is a significant effect of year on the proportion of male and female full-time graduate students (chi-squared (48) = 1904900, p < 0.001).
+
+Part-time graduate enrollment of both males and females increased from 1967 to 2015 (Fig. 4).  Part-time male enrollment increased form xx in 1967 to xx in 2015.  Part-time female enrollment increased from xx in 1967 to xx in 2015.  Most notably, up until 1975, total male enrollment exceeded total female enrollment; since 1975, total female enrollment has exceeded total male enrollment.  Thus, there is a significant effect of year on the proportion of male and female part-time graduate students (chi-squared (48) = 692160, p < 0.001).
+
 
 ##Shifts in female PhD recipients
 
@@ -144,19 +162,31 @@ rownames(female_phd_contingency) <- c("1985", "2000", "2015")
 
 
 female_phd_ed_chi <- chisq.test(select(female_phd_contingency, "Education"))
-female_phd_ed_chi #p < .001, year affects proportion
+female_phd_ed_chi #chi2 (2) = 83.404, p < .001, year affects proportion
 
 female_phd_eng_chi <- chisq.test(select(female_phd_contingency, "Engineering"))
-female_phd_eng_chi #p < .001, year affects proportion
+female_phd_eng_chi #chi2 (2) = 2989.5, p < .001, year affects proportion
 
 female_phd_ha_chi <- chisq.test(select(female_phd_contingency, "Humanities and arts"))
-female_phd_ha_chi #p < .001, year affects proportion
+female_phd_ha_chi #chi2 (2) = 542, p < .001, year affects proportion
 
 female_phd_pe_chi <- chisq.test(select(female_phd_contingency, "Physical sciences and earth sciences"))
-female_phd_pe_chi #p < .001, year affects proportion
+female_phd_pe_chi #chi2 (2) = 880.67, p < .001, year affects proportion
 
 
 ```
+
+The number of female PhD recipients in Education increased from xx in 1985 to xx in 2000, but then decreased to xx in 2015 (Fig. 5).  This is the only field for which the number of recipients declined from 2000 to 2015.  Thus, there is a significant effect of year on the proportion of PhD recipients in Education (chi-squared (2) = 83.404, p < 0.001).
+
+The number of female PhD recipients in Engineering increased from xx in 1985, to xx in 2000, to xx in 2015 (Fig. 5).  Thus, there is a significant effect of year on the proportion of PhD recipients in Engineering (chi-squared (2) = 2989.5, p < 0.001).
+
+
+The number of female PhD recipients in Humanities & Arts increased from xx in 1985, to xx in 2000, to xx in 2015 (Fig. 5).  Thus, there is a significant effect of year on the proportion of PhD recipients in Humanities & Arts (chi-squared (2) = 542, p < 0.001).
+
+
+The number of female PhD recipients in Physical & Earth Sciences increased from xx in 1985, to xx in 2000, to xx in 2015 (Fig. 5).  Thus, there is a significant effect of year on the proportion of PhD recipients in Physical & Earth Sciences (chi-squared (2) = 880.67, p < 0.001).
+
+
 
 ##Male and female salaries for starting postdoctoral and other employment positions (2015)
 
@@ -191,19 +221,23 @@ starting_salary_postdoc
 # 3b. Pairwise Mann-Whitney U + Cliff's Delta (effect size)
 
 starting_salary_mwu <- wilcox.test(median_salary$Total_male, median_salary$Total_female)
-starting_salary_mwu #p = .3289, medians the same
+starting_salary_mwu #W = 136.5, p = .3289, medians the same
 
 starting_salary_cliff <- cliff.delta(median_salary$Total_male, median_salary$Total_female)
 starting_salary_cliff #delta = .213 (small)
 
 
 starting_salary_postdoc_mwu <- wilcox.test(median_salary$Postdoc_male, median_salary$Postdoc_female)
-starting_salary_postdoc_mwu #p = .8671, medians the same
+starting_salary_postdoc_mwu #W = 117, p = .8671, medians the same
 
 starting_salary_postdoc_cliff <- cliff.delta(median_salary$Postdoc_male, median_salary$Postdoc_female)
 starting_salary_postdoc_cliff #delta = .04 (small)
 
 ```
+
+Although the median starting postdoc positions for males (median =  48000) was higher than that for females (median = 45000) in our samples, such a difference was not significant (W = 136.5, p = 0.33, alpha = .05, Cliff’s delta = 21).  Thus, median salary does not differ significantly between male and female starting postdoc position salaries.
+
+Although the median starting non-postdoc employment positions for males (median =  75167) was higher than that for females (median = 71750  in our samples, such a difference was not significant (W = 117, p = 0.86, alpha = .05, Cliff’s delta = .04).  Thus, median salary does not differ significantly between male and female starting non-postdoc employment position salaries.
 
 
 ##Academic salaries for professors in U.S. colleges
@@ -228,10 +262,13 @@ sat_aic
 #DISCUSSION
 
 ##Female graduate enrollment is increasing over time
+From 1967 to 2015, female graduate enrollment continually increased.  Total female enrollment increased more than total male enrollment.  Enrollment in public universities increased more than enrollment in private universities.  Full-time female enrollment increased more than full-time male enrollment.  Part-time female enrollment increased more than part-time male enrollment.
 
 ##Shifts in female PhD recipients over time
+Since female graduate enrollment consistently increased over time, we were curious to explore if female enrollment increased in any particular field of study.
 
 ##Starting salaries for female PhD recipients in 2015
+Since female graduate enrollment consistently increased over time, and increased more than male graduate enrollment, we were curious to explore if starting salaries for female PhD recipients differed from that of male PhD recipients.
 
 ##Academic salaries for US professors (2008-2009)
 
