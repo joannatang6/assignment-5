@@ -15,8 +15,8 @@ knitr::opts_chunk$set(echo = TRUE)
 # Outline
 
 # 0. Load in packages and read in data
-# 1a. Line graph with 6 lines: Total Males, Total Females, Full-time-males, Full-time-females, Part-time-males, Part-time-females, Public, Private-total
-# 1b. Pairwise Chi-squared tests
+# 1a. Line graph for Total Males, Total Females + LM
+# 1b. LM
 # 2a. Bar graph, with 1 bar for each subject
 # 2b. Pairwise Chi-squared tests
 # 3a. Table for male vs female postdoc positions, male vs female non-postdoc positions
@@ -43,7 +43,7 @@ library(stargazer)
 
 faculty_salary <- read_csv("Faculty salary data.csv") %>% rename("Years_since" = "Years Since PhD") %>% rename("Years" = "Years Faculty Service") %>% rename("Rank" = "Faculty Rank")
 grad_enrollment <- read_csv("Grad enrollment.csv") %>% rename("Males" = "Total Males") %>% rename("Females" = "Total Females") %>% rename("Full_time_males" = "Full-time-males") %>% rename("Full_time_females" = "Full-time-females") %>% rename("Part_time_males" = "Part-time-males") %>% rename("Part_time_females" = "Part-time-females") %>% rename("Private_total" = "Private-total")
-median_salary <- read_csv("Median salary for doctoral recipients.csv") %>% rename("Total_male" = "Total employment male") %>% rename("Total_female" = "Total employment femal") %>% rename("Postdoc_male" = "Postdoc male") %>% rename("Postdoc_female" = "Postdoc female")
+median_salary <- read_csv("Median salary for doctoral recipients.csv") %>% rename("Total_male" = "Total employment male") %>% rename("Total_female" = "Total employment femal") %>% rename("Postdoc_male" = "Postdoc male") %>% rename("Postdoc_female" = "Postdoc female") %>% rename("Field" = "Field of study")
 phd_field <- read_csv("PhDs by Field.csv") %>% mutate(Percent = Proportion*100)
 
 ```
@@ -58,7 +58,7 @@ phd_field <- read_csv("PhDs by Field.csv") %>% mutate(Percent = Proportion*100)
 
 ##Statistical Analyses
 
-All statistical analyses and figures were created in R (version 3.4.2).  Chi-squared tests were performed to analyze shifts in male and female graduate enrollment (1967-2015).  Chi-squared tests were performed to analyze shifts in female PhD recipients by field (1985, 2000, and 2015). Since our data for post-graduate starting salaries were not normally distributed, we used Wilcoxon signed-rank tests to analyze significant differences between male and female salaries for starting postdoctoral and other employment positions (2015).
+All statistical analyses and figures were created in R (version 3.4.2).  Data for graduate enrollment (1967-2015) were fitted to linear regression models to analyze changes in graduate enrollment over time.  Chi-squared tests were performed to analyze shifts in female PhD recipients by field (1985, 2000, and 2015). Since our data for post-graduate starting salaries were not normally distributed, we used Wilcoxon signed-rank tests to analyze significant differences between male and female salaries for starting postdoctoral and other employment positions (2015).  Data for faculty salaries were fitted to multiple linear regression models to analyze the effects of faculty sex, rank, years in current position, discipline, and number of years since doctoral degree was earned on faculty salaries.
 
 
 #RESULTS
@@ -106,7 +106,7 @@ grad_enrollment_females_pearsons
 
 ```
 
-Total graduate enrollment of both males and females increased from 1967 to 2015 (Fig. 1).  Male enrollment increased from 630,701 in 1967 to 1,221,566 in 2015.  Female enrollment increased from 265,364 in 1967 to 1,718,926 in 2015.  Most notably, up until 1988, total male enrollment exceeded total female enrollment; since 1988, total female enrollment has exceeded total male enrollment. The year significantly predicts male graduate enrollment (Pearsons R = .92). The overall model (Enrollment = 9,069 * Year - 17,112,153) explains a significant amount of variance in male graduate enrollment. F(1, 47) = 276, *p* < 0.001, R^2^ = 0.85. The year significantly predicts female graduate enrollment (Pearsons R = .99). The overall model (Enrollment = 30,126 * Year - 58,955,502) explains a significant amount of variance in female graduate enrollment. F(1, 47) = 2,669, *p* < 0.001, R^2^ = 0.98.
+Total graduate enrollment of both males and females increased from 1967 to 2015 (Fig. 1).  Male enrollment increased from 630,701 in 1967 to 1,221,566 in 2015.  Female enrollment increased from 265,364 in 1967 to 1,718,926 in 2015.  Most notably, up until 1988, total male enrollment exceeded total female enrollment; since 1988, total female enrollment has exceeded total male enrollment. The year significantly predicts male graduate enrollment (Pearson's *r* = .92). The overall model (Male enrollment = 9,069 x Year - 17,112,153) explains a significant amount of variance in male graduate enrollment (F(1, 47) = 276, *p* < 0.001, R^2^ = 0.85). The year significantly predicts female graduate enrollment (Pearson's *r* = .99). The overall model (Female enrollment = 30,126 x Year - 58,955,502) explains a significant amount of variance in female graduate enrollment (F(1, 47) = 2,669, *p* < 0.001, R^2^ = 0.98).
 
 
 
@@ -170,41 +170,33 @@ female_phd_pe_chi #chi2 (2) = 880.67, p < .001, year affects proportion
 
 ```
 
-The number of female PhD recipients in Education increased from 3,491 in 1985 to 4,179 in 2000, but then decreased to 3,502 in 2015 (Fig. 5).  This is the only field for which the number of recipients declined from 2000 to 2015.  Thus, there is a significant effect of year on the proportion of PhD recipients in Education (chi-squared (2) = 83.404, p < 0.001).
+The number of female PhD recipients in Education increased from 3,491 in 1985 to 4,179 in 2000, but then decreased to 3,502 in 2015 (Fig. 2).  This is the only field for which the number of recipients declined from 2000 to 2015.  There is a significant effect of year on the proportion of PhD recipients in Education ($\chi^2$(2) = 83.404, p < 0.001).
 
-The number of female PhD recipients in Engineering increased from 198 in 1985, to 838 in 2000, to 2,301 in 2015 (Fig. 5).  Thus, there is a significant effect of year on the proportion of PhD recipients in Engineering (chi-squared (2) = 2989.5, p < 0.001).
-
-
-The number of female PhD recipients in Humanities & Arts increased from 1,392 in 1985, to 2,672 in 2000, to 2,832 in 2015 (Fig. 5).  Thus, there is a significant effect of year on the proportion of PhD recipients in Humanities & Arts (chi-squared (2) = 542, p < 0.001).
+The number of female PhD recipients in Engineering increased from 198 in 1985, to 838 in 2000, to 2,301 in 2015 (Fig. 2).  There is a significant effect of year on the proportion of PhD recipients in Engineering ($\chi^2$(2) = 2989.5, p < 0.001).
 
 
-The number of female PhD recipients in Physical & Earth Sciences increased from 569 in 1985, to 1,022 in 2000, to 1,988 in 2015 (Fig. 5).  Thus, there is a significant effect of year on the proportion of PhD recipients in Physical & Earth Sciences (chi-squared (2) = 880.67, p < 0.001).
+The number of female PhD recipients in Humanities & Arts increased from 1,392 in 1985, to 2,672 in 2000, to 2,832 in 2015 (Fig. 2).  There is a significant effect of year on the proportion of PhD recipients in Humanities & Arts ($\chi^2$(2) = 542, p < 0.001).
+
+
+The number of female PhD recipients in Physical & Earth Sciences increased from 569 in 1985, to 1,022 in 2000, to 1,988 in 2015 (Fig. 2).  There is a significant effect of year on the proportion of PhD recipients in Physical & Earth Sciences ($\chi^2$(2) = 880.67, p < 0.001).
 
 ##Male and female salaries for starting postdoctoral and other employment positions (2015)
 
 ```{r echo = FALSE, message = FALSE, warning= FALSE}
 
-# 3a. Table for male vs female postdoc positions, male vs female non-postdoc positions
+# 3a. Boxplots for male vs female postdoc positions, male vs female non-postdoc positions
 
 
-#Simplifying 
-starting_salary <- median_salary %>% 
-  summarize(
-    median_female = median(Total_female),
-    median_male = median(Total_male),
-    se_female = sd(Total_female)/sqrt(length(Total_female)),
-    se_male = sd(Total_male)/sqrt(length(Total_male))
-  )
-kable(starting_salary)
+starting_salary_box <- ggplot(median_salary, aes(x = Male, y = Total_male)) +
+  geom_boxplot() +
+  geom_boxplot(aes(x = Female, y = Total_female))
+starting_salary_box
 
-starting_salary_postdoc <- median_salary %>% 
-  summarize(
-    median_postdoc_female = median(Postdoc_female),
-    median_postdoc_male = median(Postdoc_male),
-    se_female = sd(Postdoc_female)/sqrt(length(Postdoc_female)),
-    se_male = sd(Postdoc_male)/sqrt(length(Postdoc_male))
-  )
-kable(starting_salary_postdoc)
+starting_salary_postdoc_box <- ggplot(median_salary, aes(x = Male, y = Postdoc_female)) +
+  geom_boxplot() +
+  geom_boxplot(aes(x = Female, y = Postdoc_female))
+starting_salary_postdoc_box
+
 
 ```
 
@@ -227,9 +219,9 @@ starting_salary_postdoc_cliff #delta = .04 (small)
 
 ```
 
-The median starting non-postdoc employment positions differ significantly for males (median =  75167) and females (median = 71750)  in our samples (V = 101, *p* = 0.0026, $\alpha$ = .05, Cliff’s delta = .04).  Thus, median salary does not differ significantly between male and female starting non-postdoc employment position salaries.
+The median starting non-postdoc employment positions differ significantly for males (median =  75,167 males) and females (median = 71,750 females)  in our samples (V = 101, *p* = 0.0026, $\alpha$ = .05, Cliff’s delta = .21) (Fig. 3).  Thus, median salary does differ significantly between male and female starting non-postdoc employment position salaries.
 
-Although the median starting postdoc positions for males (median =  48000) was higher than that for females (median = 45000) in our samples, there is no significant difference (V = 19.5, *p* = 0.89, $\alpha$ = .05, Cliff’s delta = 21).  Thus, median salary does not differ significantly between male and female starting postdoc position salaries.
+Although the median starting postdoc positions for males (median =  48000) was higher than that for females (median = 45000) in our samples, there is no significant difference (V = 19.5, *p* = 0.89, $\alpha$ = .05, Cliff’s delta = .04) (Fig. 4).  Thus, median salary does not differ significantly between male and female starting postdoc position salaries.
 
 ##Academic salaries for professors in U.S. colleges
 
@@ -275,6 +267,10 @@ aic_lm3 #9095
 stargazer(faculty_salary_lm_sat, faculty_salary_lm2, faculty_salary_lm3, type = "html")
 
 ```
+Multiple variables potentially predict faculty salary, including faculty sex, rank, years in current position, discipline, and number of years since doctoral degree was earned.  However, our saturated multivariable linear regression model generated a negative coefficient for years in current position, translating into a *decrease* in salary the longer a faculty member stays in a their current position (Fig. 5).  This does not make sense, and a test for collinearity showed multicollinearity between years in current position and years since doctoral degree was earned.  Eliminating years since doctoral degree in favor of years in current position was earned still generates a negative coefficient for years in current position.  However, eliminating years in current position in favor of years since doctoral degree was earned alleviates this conundrum.
+
+However, we decided to eliminate both years in current position and years since doctoral degree was earned because both are correlated with rank.  This model, including only predictors of sex, rank, and discipline, best predicts faculty salary with the least complexity (and it had the lowest AIC value).
+
 
 #DISCUSSION
 

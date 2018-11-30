@@ -1,16 +1,16 @@
-﻿Field of study,Total employment male,Total employment femal,Postdoc male,Postdoc female
-Agricultural sciences and natural resources,"78,000","66,000","42,750","44,000"
-Biological and biomedical sciences,"75,000","66,000","42,000","42,000"
-Health sciences,"75,000","75,000","43,000","43,250"
-Chemistry,"80,000","75,000","42,000","42,000"
-"Geosciences, atmospheric, and ocean sciences","75,167","71,750","50,000","50,000"
-Physics and astronomy,"95,000","97,650","50,000","53,000"
-Mathematics and computer sciences,"105,000","90,000","58,000","55,000"
-Psychology,"63,000","60,000","42,000","42,000"
-Economics,"105,000","95,750","65,000","65,000"
-Social sciences,"64,000","62,000","48,000","49,250"
-Engineering,"95,000","90,000","45,000","45,000"
-Education,"71,000","63,000","50,000","45,000"
-Humanities and arts,"52,000","50,000","45,000","45,000"
-Business management and administration,"123,500","120,000","60,000","63,500"
-Other non-S&E fields,"62,800","61,000","50,000","44,000"
+﻿Field of study,Total employment male,Total employment femal,Postdoc male,Postdoc female,Male,Female
+Agricultural sciences and natural resources,"78,000","66,000","42,750","44,000",Male,Female
+Biological and biomedical sciences,"75,000","66,000","42,000","42,000",Male,Female
+Health sciences,"75,000","75,000","43,000","43,250",Male,Female
+Chemistry,"80,000","75,000","42,000","42,000",Male,Female
+"Geosciences, atmospheric, and ocean sciences","75,167","71,750","50,000","50,000",Male,Female
+Physics and astronomy,"95,000","97,650","50,000","53,000",Male,Female
+Mathematics and computer sciences,"105,000","90,000","58,000","55,000",Male,Female
+Psychology,"63,000","60,000","42,000","42,000",Male,Female
+Economics,"105,000","95,750","65,000","65,000",Male,Female
+Social sciences,"64,000","62,000","48,000","49,250",Male,Female
+Engineering,"95,000","90,000","45,000","45,000",Male,Female
+Education,"71,000","63,000","50,000","45,000",Male,Female
+Humanities and arts,"52,000","50,000","45,000","45,000",Male,Female
+Business management and administration,"123,500","120,000","60,000","63,500",Male,Female
+Other non-S&E fields,"62,800","61,000","50,000","44,000",Male,Female
