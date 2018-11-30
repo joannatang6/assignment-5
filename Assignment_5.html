@@ -139,7 +139,7 @@ $(document).ready(function () {
 </div>
 <div id="statistical-analyses" class="section level2">
 <h2>Statistical Analyses</h2>
-<p>All statistical analyses and figures were created in R (version 3.4.2). Chi-squared tests were performed to analyze shifts in male and female graduate enrollment (1967-2015). Chi-squared tests were performed to analyze shifts in female PhD recipients by field (1985, 2000, and 2015). Since our data for post-graduate starting salaries were not normally distributed, we used rank-based Mann-Whitney U tests to analyze significant differences between male and female salaries for starting postdoctoral and other employment positions (2015).</p>
+<p>All statistical analyses and figures were created in R (version 3.4.2). Chi-squared tests were performed to analyze shifts in male and female graduate enrollment (1967-2015). Chi-squared tests were performed to analyze shifts in female PhD recipients by field (1985, 2000, and 2015). Since our data for post-graduate starting salaries were not normally distributed, we used Wilcoxon signed-rank tests to analyze significant differences between male and female salaries for starting postdoctoral and other employment positions (2015).</p>
 </div>
 </div>
 <div id="results" class="section level1">
@@ -227,8 +227,8 @@ se_male
 </tr>
 </tbody>
 </table>
-<p>Although the median starting postdoc positions for males (median = 48000) was higher than that for females (median = 45000) in our samples, such a difference was not significant (W = 136.5, p = 0.33, alpha = .05, Cliff’s delta = 21). Thus, median salary does not differ significantly between male and female starting postdoc position salaries.</p>
-<p>Although the median starting non-postdoc employment positions for males (median = 75167) was higher than that for females (median = 71750 in our samples, such a difference was not significant (W = 117, p = 0.86, alpha = .05, Cliff’s delta = .04). Thus, median salary does not differ significantly between male and female starting non-postdoc employment position salaries.</p>
+<p>The median starting non-postdoc employment positions differ significantly for males (median = 75167) and females (median = 71750) in our samples (V = 101, <em>p</em> = 0.0026, <span class="math inline">\(\alpha\)</span> = .05, Cliff’s delta = .04). Thus, median salary does not differ significantly between male and female starting non-postdoc employment position salaries.</p>
+<p>Although the median starting postdoc positions for males (median = 48000) was higher than that for females (median = 45000) in our samples, there is no significant difference (V = 19.5, <em>p</em> = 0.89, <span class="math inline">\(\alpha\)</span> = .05, Cliff’s delta = 21). Thus, median salary does not differ significantly between male and female starting postdoc position salaries.</p>
 </div>
 <div id="academic-salaries-for-professors-in-u.s.-colleges" class="section level2">
 <h2>Academic salaries for professors in U.S. colleges</h2>

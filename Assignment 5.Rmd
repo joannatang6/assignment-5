@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # 2a. Bar graph, with 1 bar for each subject
 # 2b. Pairwise Chi-squared tests
 # 3a. Table for male vs female postdoc positions, male vs female non-postdoc positions
-# 3b. Pairwise Mann-Whitney U + Cliff's Delta (effect size)
+# 3b. Wilcoxon signed-rank + Cliff's Delta (effect size)
 # 4. Multivariable LM
 
 ```
@@ -58,7 +58,7 @@ phd_field <- read_csv("PhDs by Field.csv") %>% mutate(Percent = Proportion*100)
 
 ##Statistical Analyses
 
-All statistical analyses and figures were created in R (version 3.4.2).  Chi-squared tests were performed to analyze shifts in male and female graduate enrollment (1967-2015).  Chi-squared tests were performed to analyze shifts in female PhD recipients by field (1985, 2000, and 2015). Since our data for post-graduate starting salaries were not normally distributed, we used rank-based Mann-Whitney U tests to analyze significant differences between male and female salaries for starting postdoctoral and other employment positions (2015).
+All statistical analyses and figures were created in R (version 3.4.2).  Chi-squared tests were performed to analyze shifts in male and female graduate enrollment (1967-2015).  Chi-squared tests were performed to analyze shifts in female PhD recipients by field (1985, 2000, and 2015). Since our data for post-graduate starting salaries were not normally distributed, we used Wilcoxon signed-rank tests to analyze significant differences between male and female salaries for starting postdoctoral and other employment positions (2015).
 
 
 #RESULTS
@@ -210,27 +210,26 @@ kable(starting_salary_postdoc)
 
 ```{r include = FALSE}
 
-# 3b. Pairwise Mann-Whitney U + Cliff's Delta (effect size)
+# 3b. Wilcoxon signed-rank + Cliff's Delta (effect size)
 
-starting_salary_mwu <- wilcox.test(median_salary$Total_male, median_salary$Total_female)
-starting_salary_mwu #W = 136.5, p = .3289, medians the same
+starting_salary_mwu <- wilcox.test(median_salary$Total_male, median_salary$Total_female, paired = TRUE)
+starting_salary_mwu #W = 101, p = .0026, medians differ significantly
 
 starting_salary_cliff <- cliff.delta(median_salary$Total_male, median_salary$Total_female)
 starting_salary_cliff #delta = .213 (small)
 
 
-starting_salary_postdoc_mwu <- wilcox.test(median_salary$Postdoc_male, median_salary$Postdoc_female)
-starting_salary_postdoc_mwu #W = 117, p = .8671, medians the same
+starting_salary_postdoc_mwu <- wilcox.test(median_salary$Postdoc_male, median_salary$Postdoc_female, paired = TRUE)
+starting_salary_postdoc_mwu #V = 19.5, p = .8884, medians do not differ significantly
 
 starting_salary_postdoc_cliff <- cliff.delta(median_salary$Postdoc_male, median_salary$Postdoc_female)
 starting_salary_postdoc_cliff #delta = .04 (small)
 
 ```
 
-Although the median starting postdoc positions for males (median =  48000) was higher than that for females (median = 45000) in our samples, such a difference was not significant (W = 136.5, p = 0.33, alpha = .05, Cliff’s delta = 21).  Thus, median salary does not differ significantly between male and female starting postdoc position salaries.
+The median starting non-postdoc employment positions differ significantly for males (median =  75167) and females (median = 71750)  in our samples (V = 101, *p* = 0.0026, $\alpha$ = .05, Cliff’s delta = .04).  Thus, median salary does not differ significantly between male and female starting non-postdoc employment position salaries.
 
-Although the median starting non-postdoc employment positions for males (median =  75167) was higher than that for females (median = 71750  in our samples, such a difference was not significant (W = 117, p = 0.86, alpha = .05, Cliff’s delta = .04).  Thus, median salary does not differ significantly between male and female starting non-postdoc employment position salaries.
-
+Although the median starting postdoc positions for males (median =  48000) was higher than that for females (median = 45000) in our samples, there is no significant difference (V = 19.5, *p* = 0.89, $\alpha$ = .05, Cliff’s delta = 21).  Thus, median salary does not differ significantly between male and female starting postdoc position salaries.
 
 ##Academic salaries for professors in U.S. colleges
 
