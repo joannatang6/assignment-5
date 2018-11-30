@@ -3,8 +3,8 @@ title: "Female academic trajectories (1967-2015)"
 author: "Joanna Tang, Sandro Lallas, Rachem Behm"
 date: "11/27/2018"
 output:
-  word_document: default
   html_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -161,7 +161,14 @@ female_phd_chi <- chisq.test(female_phd_contingency)
 
 female_phd_prop <- prop.table(as.matrix(female_phd_contingency))
 
-kable(female_phd_prop)
+female_phd_prop
+
+kable(female_phd_prop) 
+
+female_phd_table <- female_phd_prop %>% 
+  kable(col.names = c("Education", "Engineering", "Humanities & Arts", "Physical & Earth Sciences")
+  
+ 
 
 ```
 
@@ -175,7 +182,7 @@ The number of female PhD recipients in Humanities & Arts increased from 1,392 in
 
 The number of female PhD recipients in Physical & Earth Sciences increased from 569 in 1985, to 1,022 in 2000, to 1,988 in 2015 (Fig. 2).
 
-There is a significant effect of year on the proportion of PhD recipients in each field ($\chi^2$(6) = 2073.3, p < 0.001).
+There is a significant effect of year on the proportion of PhD recipients in each field ($\chi^2$(6) = 2073.3, *p* < 0.001).
 
 ##Male and female salaries for starting postdoctoral and other employment positions (2015)
 
@@ -186,12 +193,24 @@ There is a significant effect of year on the proportion of PhD recipients in eac
 
 starting_salary_box <- ggplot(median_salary, aes(x = Male, y = Total_male)) +
   geom_boxplot() +
-  geom_boxplot(aes(x = Female, y = Total_female))
+  geom_boxplot(aes(x = Female, y = Total_female)) +
+  scale_y_continuous(breaks = seq(50000, 130000, by = 20000), lim = c(50000, 130000)) +
+  xlab("Gender") +
+  ylab("Median Salary ($)") +
+  ggtitle("Median salary for non-Postdocs employment positions") +
+  theme_classic()
+
 starting_salary_box
 
 starting_salary_postdoc_box <- ggplot(median_salary, aes(x = Male, y = Postdoc_female)) +
   geom_boxplot() +
-  geom_boxplot(aes(x = Female, y = Postdoc_female))
+  geom_boxplot(aes(x = Female, y = Postdoc_female)) +
+  scale_y_continuous(breaks = seq(40000, 70000, by = 10000), lim = c(40000, 70000)) +
+  xlab("Gender") +
+  ylab("Median Salary ($)") +
+  ggtitle("Median salary for Postdoc employment positions") +
+  theme_classic()
+
 starting_salary_postdoc_box
 
 
