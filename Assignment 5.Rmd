@@ -163,12 +163,11 @@ female_phd_prop <- prop.table(as.matrix(female_phd_contingency))
 
 female_phd_prop
 
-kable(female_phd_prop) 
-
 female_phd_table <- female_phd_prop %>% 
-  kable(col.names = c("Education", "Engineering", "Humanities & Arts", "Physical & Earth Sciences")
+  kable(caption = "Female PhD Contingency Matrix", col.names = c("Education", "Engineering", "Humanities & Arts", "Physical & Earth Sciences")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
   
- 
+ female_phd_table
 
 ```
 
