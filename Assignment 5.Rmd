@@ -3,8 +3,8 @@ title: "Female academic trajectories (1967-2015)"
 author: "Joanna Tang, Sandro Lallas, Rachem Behm"
 date: "11/27/2018"
 output:
-  html_document: default
   word_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # 1a. Line graph for Total Males, Total Females + LM
 # 1b. LM
 # 2a. Bar graph, with 1 bar for each subject
-# 2b. Pairwise Chi-squared tests
+# 2b. Chi-squared tests
 # 3a. Table for male vs female postdoc positions, male vs female non-postdoc positions
 # 3b. Wilcoxon signed-rank + Cliff's Delta (effect size)
 # 4. Multivariable LM
@@ -143,7 +143,7 @@ female_phd_graph
 
 ```
 
-```{r include = FALSE}
+```{r echo = FALSE, message = FALSE, warning= FALSE}
 # 2b. Pairwise Chi-squared tests
 
 # Converting female_phd into contingency table
@@ -155,30 +155,27 @@ female_phd_contingency <- select(female_phd, "Field", "Number", "Year") %>%
 rownames(female_phd_contingency) <- c("1985", "2000", "2015")
 
 
-female_phd_ed_chi <- chisq.test(select(female_phd_contingency, "Education"))
-female_phd_ed_chi #chi2 (2) = 83.404, p < .001, year affects proportion
+female_phd_chi <- chisq.test(female_phd_contingency)
+#chi2 (6) = 2073.3, p < .001, year affects proportion in each field
 
-female_phd_eng_chi <- chisq.test(select(female_phd_contingency, "Engineering"))
-female_phd_eng_chi #chi2 (2) = 2989.5, p < .001, year affects proportion
 
-female_phd_ha_chi <- chisq.test(select(female_phd_contingency, "Humanities and arts"))
-female_phd_ha_chi #chi2 (2) = 542, p < .001, year affects proportion
+female_phd_prop <- prop.table(as.matrix(female_phd_contingency))
 
-female_phd_pe_chi <- chisq.test(select(female_phd_contingency, "Physical sciences and earth sciences"))
-female_phd_pe_chi #chi2 (2) = 880.67, p < .001, year affects proportion
-
+kable(female_phd_prop)
 
 ```
 
-The number of female PhD recipients in Education increased from 3,491 in 1985 to 4,179 in 2000, but then decreased to 3,502 in 2015 (Fig. 2).  This is the only field for which the number of recipients declined from 2000 to 2015.  There is a significant effect of year on the proportion of PhD recipients in Education ($\chi^2$(2) = 83.404, p < 0.001).
+The number of female PhD recipients in Education increased from 3,491 in 1985 to 4,179 in 2000, but then decreased to 3,502 in 2015 (Fig. 2).  This is the only field for which the number of recipients declined from 2000 to 2015.
 
-The number of female PhD recipients in Engineering increased from 198 in 1985, to 838 in 2000, to 2,301 in 2015 (Fig. 2).  There is a significant effect of year on the proportion of PhD recipients in Engineering ($\chi^2$(2) = 2989.5, p < 0.001).
-
-
-The number of female PhD recipients in Humanities & Arts increased from 1,392 in 1985, to 2,672 in 2000, to 2,832 in 2015 (Fig. 2).  There is a significant effect of year on the proportion of PhD recipients in Humanities & Arts ($\chi^2$(2) = 542, p < 0.001).
+The number of female PhD recipients in Engineering increased from 198 in 1985, to 838 in 2000, to 2,301 in 2015 (Fig. 2). 
 
 
-The number of female PhD recipients in Physical & Earth Sciences increased from 569 in 1985, to 1,022 in 2000, to 1,988 in 2015 (Fig. 2).  There is a significant effect of year on the proportion of PhD recipients in Physical & Earth Sciences ($\chi^2$(2) = 880.67, p < 0.001).
+The number of female PhD recipients in Humanities & Arts increased from 1,392 in 1985, to 2,672 in 2000, to 2,832 in 2015 (Fig. 2).
+
+
+The number of female PhD recipients in Physical & Earth Sciences increased from 569 in 1985, to 1,022 in 2000, to 1,988 in 2015 (Fig. 2).
+
+There is a significant effect of year on the proportion of PhD recipients in each field ($\chi^2$(6) = 2073.3, p < 0.001).
 
 ##Male and female salaries for starting postdoctoral and other employment positions (2015)
 
