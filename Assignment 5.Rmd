@@ -76,7 +76,7 @@ grad_enrollment_males <- ggplot(grad_enrollment, aes(x = Year)) +
   scale_y_continuous(labels = function(x) format (x, big.mark = ",", scientific = FALSE), breaks = seq(200000, 1800000, by = 400000), lim = c(200000, 1800000), expand = c(0,0)) +
   xlab("Year") +
   ylab("Male Graduates Enrolled") +
-  ggtitle("Graduate School Enrollment by Gender (1967-2015)") +
+  ggtitle("Male Graduate School Enrollment (1967-2015)") +
   theme_classic() +
   annotate("text", x = 1980, y = 1500000, label = "y = 9,069x - 17,112,153", family = "Times New Roman", size = 5) +
     annotate("text",  x = 1980, y = 1300000, label = "italic(R)^2 == 0.85", parse = TRUE, family = "Times New Roman", size = 5)
@@ -89,11 +89,11 @@ grad_enrollment_females <- ggplot(grad_enrollment, aes(x = Year)) +
   scale_x_continuous(expand = c(0.01, 0.01)) +
   scale_y_continuous(labels = function(x) format (x, big.mark = ",", scientific = FALSE), breaks = seq(200000, 1800000, by = 400000), lim = c(200000, 1800000), expand = c(0,0)) +
   xlab("Year") +
-  ylab("Male Graduates Enrolled") +
-  ggtitle("Graduate School Enrollment by Gender (1967-2015)") +
+  ylab("Female Graduates Enrolled") +
+  ggtitle("Female Graduate School Enrollment (1967-2015)") +
   theme_classic() +
-  annotate("text", x = 1980, y = 1500000, label = "y = 9,069x - 17,112,153", family = "Times New Roman", size = 5) +
-    annotate("text",  x = 1980, y = 1300000, label = "italic(R)^2 == 0.85", parse = TRUE, family = "Times New Roman", size = 5)
+  annotate("text", x = 1980, y = 1500000, label = "y = 30,130x - 58,960,000", family = "Times New Roman", size = 5) +
+    annotate("text",  x = 1980, y = 1300000, label = "italic(R)^2 == 0.98", parse = TRUE, family = "Times New Roman", size = 5)
 
 grad_enrollment_females
 
