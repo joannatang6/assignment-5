@@ -69,20 +69,33 @@ All statistical analyses and figures were created in R (version 3.4.2).  Data fo
 
 # 1a. Line graph with 2 lines: Total Males, Total Females + LM for each
 
-grad_enrollment_total <- ggplot(grad_enrollment, aes(x = Year)) +
-  geom_point(aes(y = Males), color = "red") +
+grad_enrollment_males <- ggplot(grad_enrollment, aes(x = Year)) +
+  geom_point(aes(y = Males), color = "blue") +
     geom_smooth(method = lm, se = TRUE, color = "gray20", aes(y = Males)) +
-  geom_point(aes(y = Females), color = "blue") +
+  scale_x_continuous(expand = c(0.01, 0.01)) +
+  scale_y_continuous(labels = function(x) format (x, big.mark = ",", scientific = FALSE), breaks = seq(200000, 1800000, by = 400000), lim = c(200000, 1800000), expand = c(0,0)) +
+  xlab("Year") +
+  ylab("Male Graduates Enrolled") +
+  ggtitle("Graduate School Enrollment by Gender (1967-2015)") +
+  theme_classic() +
+  annotate("text", x = 1980, y = 1500000, label = "y = 9,069x - 17,112,153", family = "Times New Roman", size = 5) +
+    annotate("text",  x = 1980, y = 1300000, label = "italic(R)^2 == 0.85", parse = TRUE, family = "Times New Roman", size = 5)
+
+grad_enrollment_males
+
+grad_enrollment_females <- ggplot(grad_enrollment, aes(x = Year)) +
+  geom_point(aes(y = Females), color = "red") +
     geom_smooth(method = lm, se = TRUE, color = "gray20", aes(y = Females)) +
   scale_x_continuous(expand = c(0.01, 0.01)) +
-  scale_y_continuous(breaks = seq(200000, 1800000, by = 400000), lim = c(200000, 1800000), expand = c(0,0)) +
+  scale_y_continuous(labels = function(x) format (x, big.mark = ",", scientific = FALSE), breaks = seq(200000, 1800000, by = 400000), lim = c(200000, 1800000), expand = c(0,0)) +
   xlab("Year") +
-  ylab("Number of Students") +
+  ylab("Male Graduates Enrolled") +
   ggtitle("Graduate School Enrollment by Gender (1967-2015)") +
-  theme_classic()
+  theme_classic() +
+  annotate("text", x = 1980, y = 1500000, label = "y = 9,069x - 17,112,153", family = "Times New Roman", size = 5) +
+    annotate("text",  x = 1980, y = 1300000, label = "italic(R)^2 == 0.85", parse = TRUE, family = "Times New Roman", size = 5)
 
-grad_enrollment_total
-
+grad_enrollment_females
 
 
 
@@ -149,22 +162,21 @@ female_phd_graph
 # Converting female_phd into contingency table
 
 female_phd_contingency <- select(female_phd, "Field", "Number", "Year") %>%
-  spread(Field, Number) %>% 
-  select(-Year)
+  spread(Year, Number) %>% 
+  select(-Field)
 
-rownames(female_phd_contingency) <- c("1985", "2000", "2015")
-
+rownames(female_phd_contingency) <- c("Education", "Engineering", "Humanities & Arts", "Physical & Earth Sciences")
 
 female_phd_chi <- chisq.test(female_phd_contingency)
 #chi2 (6) = 2073.3, p < .001, year affects proportion in each field
 
 
-female_phd_prop <- prop.table(as.matrix(female_phd_contingency))
+female_phd_prop <- prop.table(as.matrix(female_phd_contingency), 2)
 
 female_phd_prop
 
 female_phd_table <- female_phd_prop %>% 
-  kable(caption = "Female PhD Contingency Matrix", col.names = c("Education", "Engineering", "Humanities & Arts", "Physical & Earth Sciences")) %>%
+  kable(caption = "Female PhD Contingency Matrix") %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
   
  female_phd_table
@@ -270,7 +282,13 @@ summary(faculty_salary_lm3)
 aic_lm3 <- AIC(faculty_salary_lm3)
 aic_lm3 #9095
 
+# Faculty Salary = 68224 + 4492 * SexMale + 13723 * RankAssocProf + 47403 * RankProf + 13709 * Discipline B
 
+faculty_salary_lm4 <- lm(Salary ~ Rank + Discipline, data = faculty_salary)
+summary(faculty_salary_lm4)
+
+aic_lm4 <- AIC(faculty_salary_lm4)
+aic_lm4 #9094
 
 ```
 
