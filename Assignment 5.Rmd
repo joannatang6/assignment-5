@@ -119,7 +119,7 @@ grad_enrollment_females_pearsons
 
 ```
 
-Total graduate enrollment of both males and females increased from 1967 to 2015 (Fig. 1).  Male enrollment increased from 630,701 in 1967 to 1,221,566 in 2015.  Female enrollment increased from 265,364 in 1967 to 1,718,926 in 2015.  Most notably, up until 1988, total male enrollment exceeded total female enrollment; since 1988, total female enrollment has exceeded total male enrollment. The year significantly predicts male graduate enrollment (Pearson's *r* = .92). The overall model (Male enrollment = 9,069 x Year - 17,112,153) explains a significant amount of variance in male graduate enrollment (F(1, 47) = 276, *p* < 0.001, R^2^ = 0.85). The year significantly predicts female graduate enrollment (Pearson's *r* = .99). The overall model (Female enrollment = 30,126 x Year - 58,955,502) explains a significant amount of variance in female graduate enrollment (F(1, 47) = 2,669, *p* < 0.001, R^2^ = 0.98).
+Total graduate enrollment of both males and females increased from 1967 to 2015 (Fig. 1).  Male enrollment increased from 630,701 in 1967 to 1,221,566 in 2015.  Female enrollment increased from 265,364 in 1967 to 1,718,926 in 2015.  Most notably, up until 1988, total male enrollment exceeded total female enrollment; since 1988, total female enrollment has exceeded total male enrollment. The year significantly predicts male graduate enrollment (Pearson's *r* = .92). The overall model (Male enrollment = 9,069 * Year - 17,112,153) explains a significant amount of variance in male graduate enrollment (F(1, 47) = 276, *p* < 0.001, R^2^ = 0.85). The year significantly predicts female graduate enrollment (Pearson's *r* = .99). The overall model (Female enrollment = 30,126 * Year - 58,955,502) explains a significant amount of variance in female graduate enrollment (F(1, 47) = 2,669, *p* < 0.001, R^2^ = 0.98).
 
 
 
@@ -173,10 +173,8 @@ female_phd_chi <- chisq.test(female_phd_contingency)
 
 female_phd_prop <- prop.table(as.matrix(female_phd_contingency), 2)
 
-female_phd_prop
-
 female_phd_table <- female_phd_prop %>% 
-  kable(caption = "Female PhD Contingency Matrix") %>%
+  kable(caption = "Proportions of Female PhD Recipients in each Year") %>%
   kable_styling(bootstrap_options = c("striped", "hover"))
   
  female_phd_table
@@ -248,7 +246,7 @@ starting_salary_postdoc_cliff #delta = .04 (small)
 
 The median starting non-postdoc employment positions differ significantly for males (median =  75,167 males) and females (median = 71,750 females)  in our samples (V = 101, *p* = 0.0026, $\alpha$ = .05, Cliff’s delta = .21) (Fig. 3).  Thus, median salary does differ significantly between male and female starting non-postdoc employment position salaries.
 
-Although the median starting postdoc positions for males (median =  48000) was higher than that for females (median = 45000) in our samples, there is no significant difference (V = 19.5, *p* = 0.89, $\alpha$ = .05, Cliff’s delta = .04) (Fig. 4).  Thus, median salary does not differ significantly between male and female starting postdoc position salaries.
+Although the median starting postdoc positions for males (median =  48,000) was higher than that for females (median = 45,000) in our samples, there is no significant difference (V = 19.5, *p* = 0.89, $\alpha$ = .05, Cliff’s delta = .04) (Fig. 4).  Thus, median salary does not differ significantly between male and female starting postdoc position salaries.
 
 ##Academic salaries for professors in U.S. colleges
 
@@ -290,6 +288,12 @@ summary(faculty_salary_lm4)
 aic_lm4 <- AIC(faculty_salary_lm4)
 aic_lm4 #9094
 
+faculty_salary_lm5 <- lm(Salary ~ Rank + Discipline + Years_since + Sex + Years_since*Discipline, data = faculty_salary)
+summary(faculty_salary_lm5)
+
+aic_lm5 <- AIC(faculty_salary_lm5)
+aic_lm5 #9098
+
 ```
 
 
@@ -302,7 +306,7 @@ stargazer(faculty_salary_lm_sat, faculty_salary_lm2, faculty_salary_lm3, type = 
 ```
 Multiple variables potentially predict faculty salary, including faculty sex, rank, years in current position, discipline, and number of years since doctoral degree was earned.  However, our saturated multivariable linear regression model generated a negative coefficient for years in current position, translating into a *decrease* in salary the longer a faculty member stays in a their current position (Fig. 5).  This does not make sense, and a test for collinearity showed multicollinearity between years in current position and years since doctoral degree was earned.  Eliminating years since doctoral degree in favor of years in current position was earned still generates a negative coefficient for years in current position.  However, eliminating years in current position in favor of years since doctoral degree was earned alleviates this conundrum.
 
-However, we decided to eliminate both years in current position and years since doctoral degree was earned because both are correlated with rank.  This model, including only predictors of sex, rank, and discipline, best predicts faculty salary with the least complexity (and it had the lowest AIC value).
+However, we decided to eliminate both years in current position and years since doctoral degree was earned because both are correlated with rank.  This model, including only predictors of sex, rank, and discipline, best predicts faculty salary with the least complexity (and had the lowest AIC value).
 
 
 #DISCUSSION
@@ -319,5 +323,15 @@ Since female graduate enrollment consistently increased over time, and increased
 ##Academic salaries for US professors (2008-2009)
 
 #CONCLUSION
+
+This report explored the differences in graduate degrees pursued and salary between males and females.
+
+Study findings:
+(1) Both male and female graduate degree enrollment increased over time; however, females had a much more pronounced upward enrollment trend, and surpassed total male numbers in 1988.
+(2) Females pursuing a PhD in education remained relatively constant over the years. Female enrollment in all other fields, most notably STEM faculties, increased dramatically between 1985 and 2015. 
+(3) Wilcoxon signed-rank tests showed a significant difference in male and female salaries for non-postdoctoral jobs, but not for postdoctoral employment positions.
+(4) A multiple linear regression model to predict professor salary.
+
+This study should be conducted again in the future to test if the differences between male and female education and salary remain constant or continue to differ. Current trends point towards an equalization between sexes over time. This research will become increasingly important as social progress continues and women keep redefining their role in modern-day society.
 
 #REFERENCES
