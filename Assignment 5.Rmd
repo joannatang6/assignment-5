@@ -171,7 +171,7 @@ female_phd_chi <- chisq.test(female_phd_contingency)
 #chi2 (6) = 2073.3, p < .001, year affects proportion in each field
 
 
-female_phd_prop <- prop.table(as.matrix(female_phd_contingency), 2)
+female_phd_prop <- round(prop.table(as.matrix(female_phd_contingency), 2), 3)
 
 female_phd_table <- female_phd_prop %>% 
   kable(caption = "Proportions of Female PhD Recipients in each Year") %>%
