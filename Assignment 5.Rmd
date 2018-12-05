@@ -271,6 +271,8 @@ summary(faculty_salary_lm1) #coefficient still negative
 faculty_salary_lm2 <- lm(Salary ~ Sex + Rank + Discipline + Years_since, data = faculty_salary)
 summary(faculty_salary_lm2)
 
+# Faculty Salary = 67,884 + 4,349.37(SexMale) + 13,104(RankAssocProf) + 46,033(RankProf) + 13,937(DisciplineB) + 61(Years_since)
+
 aic_lm2 <- AIC(faculty_salary_lm2)
 aic_lm2 #9097
 
@@ -279,8 +281,6 @@ summary(faculty_salary_lm3)
 
 aic_lm3 <- AIC(faculty_salary_lm3)
 aic_lm3 #9095
-
-# Faculty Salary = 68224 + 4492 * SexMale + 13723 * RankAssocProf + 47403 * RankProf + 13709 * Discipline B
 
 faculty_salary_lm4 <- lm(Salary ~ Rank + Discipline, data = faculty_salary)
 summary(faculty_salary_lm4)
@@ -301,12 +301,12 @@ aic_lm5 #9098
 
 #Regression table of LMs
 
-stargazer(faculty_salary_lm_sat, faculty_salary_lm2, faculty_salary_lm3, type = "html")
+stargazer(faculty_salary_lm_sat, faculty_salary_lm2, type = "html")
 
 ```
 Multiple variables potentially predict faculty salary, including faculty sex, rank, years in current position, discipline, and number of years since doctoral degree was earned.  However, our saturated multivariable linear regression model generated a negative coefficient for years in current position, translating into a *decrease* in salary the longer a faculty member stays in a their current position (Fig. 5).  This does not make sense, and a test for collinearity showed multicollinearity between years in current position and years since doctoral degree was earned.  Eliminating years since doctoral degree in favor of years in current position was earned still generates a negative coefficient for years in current position.  However, eliminating years in current position in favor of years since doctoral degree was earned alleviates this conundrum.
 
-However, we decided to eliminate both years in current position and years since doctoral degree was earned because both are correlated with rank.  This model, including only predictors of sex, rank, and discipline, best predicts faculty salary with the least complexity (and had the lowest AIC value).
+However, we decided to eliminate years since doctoral degree was earned because both are correlated with rank.  This model, including only predictors of sex, rank, and discipline, best predicts faculty salary with the least complexity (and had the lowest AIC value).
 
 
 #DISCUSSION
